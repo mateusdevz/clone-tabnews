@@ -12,9 +12,12 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "@tailwindcss/postcss": "^4.0.14",
     "next": "^13.1.6",
+    "postcss": "^8.5.3",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "tailwindcss": "^4.0.14"
   },
   "devDependencies": {
     "prettier": "^3.5.2"

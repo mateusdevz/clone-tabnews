@@ -11,13 +11,17 @@
     "test": "jest",
     "test:watch": "jest --watchAll",
     "lint:check": "prettier --check .",
-    "lint:fix": "prettier --write ."
+    "lint:fix": "prettier --write .",
+    "migration:create": "node-pg-migrate --migrations-dir infra/migrations create",
+    "migration:up": "node-pg-migrate --migrations-dir infra/migrations up --envPath ./.env.development"
   },
   "author": "",
   "license": "MIT",
   "dependencies": {
     "@tailwindcss/postcss": "^4.0.14",
+    "dotenv": "^16.4.4",
     "next": "^13.1.6",
+    "node-pg-migrate": "^6.2.2",
     "pg": "^8.11.3",
     "postcss": "^8.5.3",
     "react": "^18.2.0",

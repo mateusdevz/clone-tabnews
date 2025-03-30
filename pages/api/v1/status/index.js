@@ -12,7 +12,6 @@ async function status(request, response) {
     text: `SELECT count(*)::int from pg_stat_activity WHERE datname = $1;`,
     values: [dbName]
   });
-  console.log(dbActiveConnections.rows);
 
   response.status(200).json({
     updated_at: updatedAt,

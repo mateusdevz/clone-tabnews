@@ -8,6 +8,8 @@ async function query(queryObject) {
         return result;
     } catch(e) {
 
+    } finally {
+        await client.end();
     }
 }
 

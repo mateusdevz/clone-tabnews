@@ -2,10 +2,10 @@ import database from "infra/database";
 import orchestrator from "tests/orchestrator.js";
 
 async function cleanDatabase() {
-  await database.query('drop schema public cascade; create schema public;');
+  await database.query("drop schema public cascade; create schema public;");
 }
 
-beforeAll(async() => {
+beforeAll(async () => {
   await orchestrator.waitForAllServices();
   cleanDatabase();
 });
@@ -19,4 +19,3 @@ test("get to /migrations", async () => {
   expect(Array.isArray(responseBody)).toBe(true);
   expect(responseBody.length).toBeGreaterThan(0);
 });
- 

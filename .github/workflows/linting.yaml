@@ -23,4 +23,3 @@ jobs:
           node-version: "lts/hydrogen"
       - run: npm install
       - run: npm run lint:eslint:check
-

@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "dev": "npm run services:up && npm run services:wait:database && npm run migrations:up && next dev",
+    "postdev": "npm run services:stop",
     "test": "npm run services:up && conc --names next,jest --hide next --kill-others --success command-jest \"next dev\" \"jest --runInBand\"",
+    "posttest": "npm run services:stop",
     "test:watch": "jest --watchAll --runInBand",
     "services:up": "docker compose -f infra/compose.yaml up -d",
     "services:down": "docker compose -f infra/compose.yaml down",
@@ -28,7 +30,7 @@
     "eslint": "^8.57.0",
     "next": "^13.1.6",
     "node-pg-migrate": "^6.2.2",
-    "pg": "^8.11.3",
+    "pg": "8.12.0",
     "postcss": "^8.5.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"

@@ -24,14 +24,14 @@ async function status(request, response) {
         },
       },
     });
-  } catch(e) {
+  } catch (e) {
     console.log("\n Erro dentro do catch do controller");
     const publicErrorObject = new InternalServerError({
       cause: e,
     });
 
     console.log(publicErrorObject);
-    
+
     response.status(500).json(publicErrorObject);
   }
 }

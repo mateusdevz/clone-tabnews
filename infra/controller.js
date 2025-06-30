@@ -1,12 +1,19 @@
-import { InternalServerError, MethodNotAllowedError } from "infra/errors";
+import {
+  InternalServerError,
+  MethodNotAllowedError,
+  ValidationError,
+} from "infra/errors";
 
 function onErrorHandler(e, req, res) {
+  if (e instanceof ValidationError) {
+    return res.status(e.statusCode).json(e);
+  }
+
   const error = new InternalServerError({
     cause: e,
     statusCode: e.statusCode,
   });
 
-  console.error("Erro do next-connect ", error);
   return res.status(error.statusCode).json(error);
 }
 

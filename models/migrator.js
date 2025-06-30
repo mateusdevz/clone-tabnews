@@ -35,7 +35,7 @@ function getMigrationsRunner(dbClient, dryRun) {
     dryRun,
     dir: join("infra", "migrations"),
     direction: "up",
-    verbose: true,
+    log: () => {},
     migrationsTable: "pgmigrations",
   };
 

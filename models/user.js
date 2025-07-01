@@ -1,5 +1,5 @@
 import database from "infra/database.js";
-import { ValidationError } from "infra/errors";
+import { NotFoundError, ValidationError } from "infra/errors";
 
 async function create(user) {
   await validateUniqueEmail(JSON.parse(user).email);
@@ -69,8 +69,38 @@ async function create(user) {
   }
 }
 
+async function findOneByUsername(username) {
+  const userFounded = await runSelectQuery(username);
+  return userFounded;
+
+  async function runSelectQuery(username) {
+    const result = await database.query({
+      text: `
+        SELECT
+          *
+        FROM users
+        WHERE
+          LOWER(username) = LOWER($1)
+        LIMIT
+          1
+      `,
+      values: [username]
+    });
+
+    if (!result.rows[0]) {
+      throw new NotFoundError({
+        message: "Usuário não encontrado na base.",
+        action: "Use informações de usuários já cadastrados na base.",
+      });
+    }
+
+    return result.rows[0];
+  }
+}
+
 const user = {
   create,
+  findOneByUsername,
 };
 
 export default user;

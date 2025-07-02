@@ -84,7 +84,7 @@ async function findOneByUsername(username) {
         LIMIT
           1
       `,
-      values: [username]
+      values: [username],
     });
 
     if (!result.rows[0]) {

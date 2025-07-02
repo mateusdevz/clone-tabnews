@@ -14,7 +14,7 @@ describe("GET /api/v1/users/[username]", () => {
       await fetch("http://localhost:3000/api/v1/users", {
         method: "POST",
         headers: {
-          "Content-Type": "json",
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
           username: "MesmoCase",
@@ -47,7 +47,7 @@ describe("GET /api/v1/users/[username]", () => {
       await fetch("http://localhost:3000/api/v1/users", {
         method: "POST",
         headers: {
-          "Content-Type": "json",
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
           username: "CaseDiferente",

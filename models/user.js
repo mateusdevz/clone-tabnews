@@ -2,15 +2,13 @@ import database from "infra/database.js";
 import { NotFoundError, ValidationError } from "infra/errors";
 
 async function create(user) {
-  await validateUniqueEmail(JSON.parse(user).email);
-  await validateUniqueUsername(JSON.parse(user).username);
+  await validateUniqueEmail(user.email);
+  await validateUniqueUsername(user.username);
 
   const newUser = await runInsertQuery(user);
   return newUser;
 
-  async function runInsertQuery(user) {
-    const userInput = JSON.parse(user);
-
+  async function runInsertQuery(userInput) {
     const results = await database.query({
       text: `
                 INSERT INTO 

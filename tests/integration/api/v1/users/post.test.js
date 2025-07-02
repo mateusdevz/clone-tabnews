@@ -14,7 +14,7 @@ describe("POST /api/v1/users", () => {
       const response = await fetch("http://localhost:3000/api/v1/users", {
         method: "POST",
         headers: {
-          "Content-Type": "json",
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
           username: "mateuz.dev123",
@@ -43,7 +43,7 @@ describe("POST /api/v1/users", () => {
       const response = await fetch("http://localhost:3000/api/v1/users", {
         method: "POST",
         headers: {
-          "Content-Type": "json",
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
           username: "mateuz.dev3",
@@ -57,7 +57,7 @@ describe("POST /api/v1/users", () => {
       const response2 = await fetch("http://localhost:3000/api/v1/users", {
         method: "POST",
         headers: {
-          "Content-Type": "json",
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
           username: "mateuz.dev1",
@@ -82,7 +82,7 @@ describe("POST /api/v1/users", () => {
       const response = await fetch("http://localhost:3000/api/v1/users", {
         method: "POST",
         headers: {
-          "Content-Type": "json",
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
           username: "mateuz.dev543",
@@ -96,7 +96,7 @@ describe("POST /api/v1/users", () => {
       const response2 = await fetch("http://localhost:3000/api/v1/users", {
         method: "POST",
         headers: {
-          "Content-Type": "json",
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
           username: "mateuz.dev543",

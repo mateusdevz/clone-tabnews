@@ -7,6 +7,7 @@ export class InternalServerError extends Error {
     this.name = "InternalServerError";
     this.action = "Entre em contato com o suporte.";
     this.statusCode = statusCode || 500;
+    this.cause = cause;
   }
 
   toJSON() {

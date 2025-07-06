@@ -36,28 +36,12 @@ describe("PATCH /api/v1/users/[username]", () => {
     });
 
     test("With duplicated 'username'", async () => {
-      await fetch("http://localhost:3000/api/v1/users", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          username: "mateuz.dev1",
-          email: "mateus.dev1@gmail.com",
-          password: "teste123",
-        }),
+      await orchestrator.createUser({
+        username: "mateuz.dev1",
       });
 
-      await fetch("http://localhost:3000/api/v1/users", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          username: "mateuz.dev2",
-          email: "mateus.dev2@gmail.com",
-          password: "teste123",
-        }),
+      await orchestrator.createUser({
+        username: "mateuz.dev2",
       });
 
       const response = await fetch(
@@ -86,39 +70,23 @@ describe("PATCH /api/v1/users/[username]", () => {
     });
 
     test("With duplicated 'email'", async () => {
-      await fetch("http://localhost:3000/api/v1/users", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          username: "mateuz.dev1123123",
-          email: "mateusdev1123123.dev1@gmail.com",
-          password: "teste123",
-        }),
+      const user = await orchestrator.createUser({
+        email: "mateusdev1123123.dev1@gmail.com",
       });
 
-      await fetch("http://localhost:3000/api/v1/users", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          username: "mateuz.5345342",
-          email: "mateusdev1123123.dev2@gmail.com",
-          password: "teste123",
-        }),
+      await orchestrator.createUser({
+        email: "mateusdev1123123.dev2@gmail.com",
       });
 
       const response = await fetch(
-        "http://localhost:3000/api/v1/users/mateuz.5345342",
+        `http://localhost:3000/api/v1/users/${user.username}`,
         {
           method: "PATCH",
           headers: {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            email: "mateusdev1123123.dev1@gmail.com",
+            email: "mateusdev1123123.dev2@gmail.com",
           }),
         },
       );
@@ -136,16 +104,10 @@ describe("PATCH /api/v1/users/[username]", () => {
     });
 
     test("With unique 'username'", async () => {
-      await fetch("http://localhost:3000/api/v1/users", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          username: "mateuz.sucesso",
-          email: "mateus.sucesso@gmail.com",
-          password: "teste123",
-        }),
+      await orchestrator.createUser({
+        username: "mateuz.sucesso",
+        email: "mateus.sucesso@gmail.com",
+        password: "teste123",
       });
 
       const response = await fetch(
@@ -181,16 +143,10 @@ describe("PATCH /api/v1/users/[username]", () => {
     });
 
     test("With unique 'email'", async () => {
-      await fetch("http://localhost:3000/api/v1/users", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          username: "mateuz.sucesso123",
-          email: "mateus.sucesso123@gmail.com",
-          password: "teste123",
-        }),
+      await orchestrator.createUser({
+        username: "mateuz.sucesso123",
+        email: "mateus.sucesso123@gmail.com",
+        password: "teste123",
       });
 
       const response = await fetch(
@@ -226,16 +182,10 @@ describe("PATCH /api/v1/users/[username]", () => {
     });
 
     test("With new password", async () => {
-      await fetch("http://localhost:3000/api/v1/users", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          username: "mateuz.password",
-          email: "mateus.password@gmail.com",
-          password: "password",
-        }),
+      await orchestrator.createUser({
+        username: "mateuz.password",
+        email: "mateus.password@gmail.com",
+        password: "password",
       });
 
       const response = await fetch(

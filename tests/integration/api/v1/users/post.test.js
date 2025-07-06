@@ -40,10 +40,16 @@ describe("POST /api/v1/users", () => {
       });
 
       const userInDb = await user.findOneByUsername("mateuz.dev123");
-      const passwordComparisionResultMatch = await password.compare("teste123", userInDb.password);
+      const passwordComparisionResultMatch = await password.compare(
+        "teste123",
+        userInDb.password,
+      );
       expect(passwordComparisionResultMatch).toBe(true);
 
-      const passwordComparisionResultNotMatch = await password.compare("senhaerrada", userInDb.password);
+      const passwordComparisionResultNotMatch = await password.compare(
+        "senhaerrada",
+        userInDb.password,
+      );
       expect(passwordComparisionResultNotMatch).toBe(false);
     });
 

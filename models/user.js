@@ -97,7 +97,12 @@ async function update(username, valuesToUpdate) {
         RETURNING
           *
       `,
-      values: [updatedUser.id, updatedUser.username, updatedUser.email, updatedUser.password],
+      values: [
+        updatedUser.id,
+        updatedUser.username,
+        updatedUser.email,
+        updatedUser.password,
+      ],
     });
 
     return results.rows[0];
